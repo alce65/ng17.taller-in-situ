@@ -1,0 +1,8 @@
+<p>greeting works!</p>
+<p>Hola {{user ? user : 'amigo' }}</p>
+<label>
+  Dime tu nombre
+  <input type="text" placeholder=" " [(ngModel)]="user">
+  <button (click)="user=''">Borrar</button>
+
+</label>
