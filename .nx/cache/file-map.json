@@ -1,0 +1,236 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.2.8",
+  "deps": {
+    "@angular/animations": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser-dynamic": "^17.0.0",
+    "@angular/router": "^17.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2",
+    "@angular-devkit/build-angular": "^17.0.10",
+    "@angular-eslint/builder": "17.2.0",
+    "@angular-eslint/eslint-plugin": "17.2.0",
+    "@angular-eslint/eslint-plugin-template": "17.2.0",
+    "@angular-eslint/schematics": "17.2.0",
+    "@angular-eslint/template-parser": "17.2.0",
+    "@angular/cli": "^17.0.6",
+    "@angular/compiler-cli": "^17.0.0",
+    "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/eslint-plugin": "6.18.0",
+    "@typescript-eslint/parser": "6.18.0",
+    "eslint": "^8.56.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "typescript": "~5.2.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "6686520031028425313"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "8594335758733851244"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "13044518069027839699"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5331566439708925252"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "17038929134016848735"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "5336636969995539451"
+      },
+      {
+        "file": "README.md",
+        "hash": "16848532573554159510"
+      },
+      {
+        "file": "angular.json",
+        "hash": "8447830300526062357"
+      },
+      {
+        "file": "angular.schedule.md",
+        "hash": "3349349997426690734"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "12772457462673837326"
+      },
+      {
+        "file": "package.json",
+        "hash": "17911452599922013728"
+      },
+      {
+        "file": "prepare.taller.md",
+        "hash": "3009504876740275680"
+      },
+      {
+        "file": "projects/demo/.eslintrc.json",
+        "hash": "17623124988826749809"
+      },
+      {
+        "file": "projects/demo/karma.conf.js",
+        "hash": "18268223524858409930"
+      },
+      {
+        "file": "projects/demo/src/app/app.component.html",
+        "hash": "8479627179732618526"
+      },
+      {
+        "file": "projects/demo/src/app/app.component.scss",
+        "hash": "1807916561217271665"
+      },
+      {
+        "file": "projects/demo/src/app/app.component.spec.ts",
+        "hash": "15085353219810818163"
+      },
+      {
+        "file": "projects/demo/src/app/app.component.ts",
+        "hash": "16308054562253966840"
+      },
+      {
+        "file": "projects/demo/src/app/app.config.ts",
+        "hash": "5548986198782384011"
+      },
+      {
+        "file": "projects/demo/src/app/app.routes.ts",
+        "hash": "6918453038028864479"
+      },
+      {
+        "file": "projects/demo/src/app/components/counter/counter.component.html",
+        "hash": "2652757092587792180"
+      },
+      {
+        "file": "projects/demo/src/app/components/counter/counter.component.scss",
+        "hash": "5564506104371264832"
+      },
+      {
+        "file": "projects/demo/src/app/components/counter/counter.component.spec.ts",
+        "hash": "14524009346831878393"
+      },
+      {
+        "file": "projects/demo/src/app/components/counter/counter.component.ts",
+        "hash": "14371498663546705313"
+      },
+      {
+        "file": "projects/demo/src/app/components/greeting/greeting.component.html",
+        "hash": "11151639377501267670"
+      },
+      {
+        "file": "projects/demo/src/app/components/greeting/greeting.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "projects/demo/src/app/components/greeting/greeting.component.spec.ts",
+        "hash": "17722605913780807660"
+      },
+      {
+        "file": "projects/demo/src/app/components/greeting/greeting.component.ts",
+        "hash": "6502227801186808218"
+      },
+      {
+        "file": "projects/demo/src/app/components/menu/menu.component.html",
+        "hash": "12510700771845478675"
+      },
+      {
+        "file": "projects/demo/src/app/components/menu/menu.component.scss",
+        "hash": "1597894506485463093"
+      },
+      {
+        "file": "projects/demo/src/app/components/menu/menu.component.spec.ts",
+        "hash": "9055416781559648529"
+      },
+      {
+        "file": "projects/demo/src/app/components/menu/menu.component.ts",
+        "hash": "17006274093666796896"
+      },
+      {
+        "file": "projects/demo/src/app/components/sample/sample.component.html",
+        "hash": "17184844910016744764"
+      },
+      {
+        "file": "projects/demo/src/app/components/sample/sample.component.scss",
+        "hash": "11770940428892961307"
+      },
+      {
+        "file": "projects/demo/src/app/components/sample/sample.component.spec.ts",
+        "hash": "6205475677243040132"
+      },
+      {
+        "file": "projects/demo/src/app/components/sample/sample.component.ts",
+        "hash": "4241688938377523808"
+      },
+      {
+        "file": "projects/demo/src/app/pages/about/about.component.spec.ts",
+        "hash": "8513862560221406946"
+      },
+      {
+        "file": "projects/demo/src/app/pages/about/about.component.ts",
+        "hash": "1571765552291170577"
+      },
+      {
+        "file": "projects/demo/src/app/pages/home/home.component.spec.ts",
+        "hash": "17126761526210037434"
+      },
+      {
+        "file": "projects/demo/src/app/pages/home/home.component.ts",
+        "hash": "14030910661848991260"
+      },
+      {
+        "file": "projects/demo/src/assets/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "projects/demo/src/favicon.ico",
+        "hash": "3988961587069885523"
+      },
+      {
+        "file": "projects/demo/src/index.html",
+        "hash": "10972046295829135933"
+      },
+      {
+        "file": "projects/demo/src/main.ts",
+        "hash": "4169901790405087765"
+      },
+      {
+        "file": "projects/demo/src/styles.scss",
+        "hash": "2917954890128038984"
+      },
+      {
+        "file": "projects/demo/tsconfig.app.json",
+        "hash": "5927361027902362554"
+      },
+      {
+        "file": "projects/demo/tsconfig.spec.json",
+        "hash": "13338856497352866793"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "6830907402848794383"
+      }
+    ]
+  }
+}

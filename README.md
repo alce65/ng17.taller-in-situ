@@ -1278,6 +1278,7 @@ Se ajustaran a un modelo o entidad: id - titulo - isComplete
 El id sera generado con crypto
 Se podrá cambiar el estado de la tarea de completa a incompleta
 Se podrá cambiar el titulo en la propia lista
+Se podrán añadir y borrar tareas
 
 Repasa el uso de
 
