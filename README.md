@@ -1,6 +1,5 @@
 # Ng17 Workshop
 
-
 - [Ng17 Workshop](#ng17-workshop)
   - [Creación del proyecto](#creación-del-proyecto)
   - [Incorporación de ESLint](#incorporación-de-eslint)
@@ -48,7 +47,7 @@
     - [Test del componente Counter](#test-del-componente-counter)
     - [Test del componente Greeting](#test-del-componente-greeting)
   - [Challenge 2. Página TODO. Componente 'TODO List' unitario](#challenge-2-página-todo-componente-todo-list-unitario)
-    - [Solución  del Challenge 2](#solución--del-challenge-2)
+    - [Solución del Challenge 2](#solución--del-challenge-2)
       - [La vista (template)](#la-vista-template)
       - [La lógica del componente](#la-lógica-del-componente)
       - [Los tests](#los-tests)
@@ -119,7 +118,6 @@
     - [Autenticación](#autenticación)
     - [Librerías de componentes](#librerías-de-componentes)
 
-
 ## Creación del proyecto
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
@@ -152,7 +150,7 @@ UPDATE angular.json (3255 bytes)
 
 #### El workspace
 
-Gitignore, Editorconfig  y README inicial
+Gitignore, Editorconfig y README inicial
 
 - ng.17.taller/.editorconfig (274 bytes)
 - ng.17.taller/.gitignore (548 bytes)
@@ -275,9 +273,9 @@ index.html
 
 Los resultados de la compilación por parte de esbuild
 
-main-FMCIX442.js      | main          | 191.64 kB |                52.66 kB
-polyfills-RX4V3J3S.js | polyfills     |  33.01 kB |                10.68 kB
-styles-5INURTSO.css   | styles        |   0 bytes |                 0 bytes
+main-FMCIX442.js | main | 191.64 kB | 52.66 kB
+polyfills-RX4V3J3S.js | polyfills | 33.01 kB | 10.68 kB
+styles-5INURTSO.css | styles | 0 bytes | 0 bytes
 
 Este contenido es el que aparecerá en el server donde hagamos es despliegue de la aplicación (Vercel, Netlify...)
 
@@ -304,13 +302,11 @@ Cambiamos la forma de esta última orientación sustituyendo querySelector de el
 por el debugElement de testing y sus propios métodos
 
 ```ts
-    // const compiled = fixture.nativeElement as HTMLElement;
-    // const elementH1 = compiled.querySelector('h1') as HTMLHeadingElement
-    const debugElement = fixture.debugElement;
-    const elementH1 = debugElement.query(By.css('h1'))
-      .nativeElement as HTMLHeadingElement;
-    expect(elementH1.textContent).toContain('Hello, demo');
-
+// const compiled = fixture.nativeElement as HTMLElement;
+// const elementH1 = compiled.querySelector('h1') as HTMLHeadingElement
+const debugElement = fixture.debugElement;
+const elementH1 = debugElement.query(By.css("h1")).nativeElement as HTMLHeadingElement;
+expect(elementH1.textContent).toContain("Hello, demo");
 ```
 
 Con los cambios hechos y los test en verde, podemos hacer un **commit**
@@ -396,7 +392,7 @@ All files              |     100 |      100 |     100 |     100 |
 
 NO existen como tal las páginas
 Podemos llamar así a los componentes invocados directamente en las rutas y usarlos como contenedores
-podemos crearlos con el modo inline para el template (-t) y para los estilos  (-s)
+podemos crearlos con el modo inline para el template (-t) y para los estilos (-s)
 
 ```shell
 ng g c pages/home -t -s --dry-run
@@ -405,16 +401,15 @@ ng g c pages/home -t -s --dry-run
 Modificamos nuestro componente para incluir propiedades y su interpolación en el template
 
 ```ts
-
 @Component({
-  selector: 'isdi-home',
+  selector: "isdi-home",
   standalone: true,
   imports: [],
   template: `<h2>{{ title }}</h2>`,
   styles: ``,
 })
 export class HomeComponent {
-  title = 'Home page'
+  title = "Home page";
 }
 ```
 
@@ -423,12 +418,12 @@ export class HomeComponent {
 En el fichero de rutas, añadimos las páginas incluyendo las re-direcciones para la url vacía o cualquier error
 
 ```ts
-  export const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'home' },
-    { path: 'home', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: '**', redirectTo: 'home' },
-  ];
+export const routes: Routes = [
+  { path: "", pathMatch: "full", redirectTo: "home" },
+  { path: "home", component: HomeComponent },
+  { path: "about", component: AboutComponent },
+  { path: "**", redirectTo: "home" },
+];
 ```
 
 Comprobamos su funcionamiento escribiendo directamente las rutas en el navegador
@@ -479,11 +474,11 @@ el módulo responsable de esta funcionalidad, RoutingModule
 
 ```ts
 @Component({
-  selector: 'isdi-menu',
+  selector: "isdi-menu",
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
+  templateUrl: "./menu.component.html",
+  styleUrl: "./menu.component.scss",
 })
 export class MenuComponent {}
 ```
@@ -497,29 +492,29 @@ De esa forma, el template puede definir el comportamiento de los hiperenlaces co
 Si incluimos la clase CSS en los estilos, se aplicara automáticamente en el elemento del menu que esté activo
 
 ```scss
-  nav {
-    ul {
-      list-style: none;
-      display: flex;
-      li {
-        display: block;
-        padding: 0.2rem 0.5rem;
-        a {
-          text-decoration: none;
-          color: inherit;
-        }
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      display: block;
+      padding: 0.2rem 0.5rem;
+      a {
+        text-decoration: none;
+        color: inherit;
       }
     }
   }
+}
 
-  .link-active {
-    font-weight: 500;
-    font-size: 1.1rem;
-    position: relative;
-    top: -2px;
-    transition: font-weight 2s;
-    border-bottom: 1px solid;
-  }
+.link-active {
+  font-weight: 500;
+  font-size: 1.1rem;
+  position: relative;
+  top: -2px;
+  transition: font-weight 2s;
+  border-bottom: 1px solid;
+}
 ```
 
 ## Componentes: estado y binding. Eventos. Templates y control flow. Estilos
@@ -535,10 +530,10 @@ Creamos un interface con el CLI
 Definimos en el el objeto que representa una ruta (path y label)
 
 ```ts
-  export interface MenuOption {
-    path: string;
-    label: string;
-  }
+export interface MenuOption {
+  path: string;
+  label: string;
+}
 ```
 
 Añadimos en el componente menu una propiedad con el array de opciones del menu
@@ -553,9 +548,9 @@ Añadimos en el componente menu una propiedad con el array de opciones del menu
 En el template iteramos sobre esa propiedad para construir el menu
 
 ```html
- @for (option of options; track $index) {
-  <li><a [routerLink]="option.path" routerLinkActive="link-active">{{option.label}}</a></li>
-  }
+@for (option of options; track $index) {
+<li><a [routerLink]="option.path" routerLinkActive="link-active">{{option.label}}</a></li>
+}
 ```
 
 Estamos usando una de las nuevas flow controls, que sustituyen a las directivas estructurales en Angular 17
@@ -578,9 +573,9 @@ Creamos un componente contador y lo añadimos en la página home
 - En esa respuesta podemos hacer directamente cambios en el estado, que automáticamente actualizaran la vista
 
 ```html
-  <button type="button" (click)="counter =  counter - 1">➖</button>
-  <span>{{counter}}</span>
-  <button type="button" (click)="counter =  counter + 1">➕</button>
+<button type="button" (click)="counter =  counter - 1">➖</button>
+<span>{{counter}}</span>
+<button type="button" (click)="counter =  counter + 1">➕</button>
 ```
 
 Sería mucho mejor práctica llevar la lógica a un método manejador del evento click
@@ -603,7 +598,7 @@ La más potente es vincularla con un objeto con la directiva en el que
 - su valor boolean determina si se aplican o no
 
 ```html
-  <span [ngClass]="{'negative': counter < 0}">{{counter}}</span>
+<span [ngClass]="{'negative': counter < 0}">{{counter}}</span>
 ```
 
 ### Limites en el contador: renderizado condicional
@@ -612,19 +607,19 @@ Si definimos como límites -10 y 10, podemos deshabilitar el botón que ya no es
 Vemos de nuevo como el operador [] permite vincular un atributo a una expresión
 
 ```html
-  <button type="button" (click)="updateCounter(-1)" [disabled]="counter === -10">➖</button>
-  <span [ngClass]="{negative: counter < 0}">{{counter}}</span>
-  <button type="button" (click)="updateCounter(+1)" [disabled]="counter === 10">➕</button>
+<button type="button" (click)="updateCounter(-1)" [disabled]="counter === -10">➖</button>
+<span [ngClass]="{negative: counter < 0}">{{counter}}</span>
+<button type="button" (click)="updateCounter(+1)" [disabled]="counter === 10">➕</button>
 ```
 
 Pero ademas, podemos añadir información al usuario que se renderizará condicionalmente
 Para ello tenemos también un nuevo flow control, @if, que viene a sustituir a la directiva estructural nf-if
 
 ```html
-  @if (counter === 10) {
-  <p class="info">has alcanzado el límite superior</p>
-  } @else if (counter === -10) {
-  <p class="info">has alcanzado el límite inferior</p>
+@if (counter === 10) {
+<p class="info">has alcanzado el límite superior</p>
+} @else if (counter === -10) {
+<p class="info">has alcanzado el límite inferior</p>
 ```
 
 ### Componente saludo: two-way data binding with ngModel
@@ -639,7 +634,7 @@ Añadimos un input de HTML y vemos como vincularlo a una propiedad,
 de forma similar a lo que hacemos en los formularios controlados de react
 
 ```html
- <input type="text" placeholder="Dime tu nombre" [value]="user" (input)="updateInput($event)">
+<input type="text" placeholder="Dime tu nombre" [value]="user" (input)="updateInput($event)" />
 ```
 
 ```ts
@@ -669,14 +664,14 @@ junto con su evento específico **ngModelChange** que permiten reescribir el có
 Para usarla debemos importar formsModule en nuestro componente
 
 ```html
-  <input type="text" placeholder="El nombre de tu mascota" [ngModel]="pet" (ngModelChange)="pet = $event">
+<input type="text" placeholder="El nombre de tu mascota" [ngModel]="pet" (ngModelChange)="pet = $event" />
 ```
 
 Finalmente, la referencia a la directiva y su método puede unificarse con el operador [()] con ngModel.
 Así es como usaremos siempre el binding bidireccional
 
 ```html
-<input type="text" placeholder="Y de donde eres" [(ngModel)]="place">
+<input type="text" placeholder="Y de donde eres" [(ngModel)]="place" />
 ```
 
 ### Los estilos y los componentes
@@ -751,31 +746,29 @@ ng g c components/styles --project demo
 La entrada del texto, su display y el botón de borrar reflejan el two-wat data binding que ya conocemos
 
 Añadimos los inputs de color y tamaño y un select para la lista de fuentes.
-Es fácil encontrar como conseguir la lista con una pequeña función  (no es importante)
+Es fácil encontrar como conseguir la lista con una pequeña función (no es importante)
 
 Para crear un select/options iteramos sobre el array con @for
 
 ```html
-  <select [(ngModel)]="font">
-    <option value=""></option>
-    @for (item of availableFonts; track $index) {
-    <option [value]="item">{{item}}</option>
-    }
-  </select>
+<select [(ngModel)]="font">
+  <option value=""></option>
+  @for (item of availableFonts; track $index) {
+  <option [value]="item">{{item}}</option>
+  }
+</select>
 ```
 
 La presentación del texto en pantalla recibe los estilos elegidos por el usuario de forma dinámica gracias a propiedades de [style] asociadas a variables
 
 ```html
-  <output [style.color]="refColor.value ? refColor.value : '#000000' " [style.fontSize]="size + 'rem'"
-      [style.fontFamily]="font ? font : 'inherit'">{{sample}}</output>
+<output [style.color]="refColor.value ? refColor.value : '#000000' " [style.fontSize]="size + 'rem'" [style.fontFamily]="font ? font : 'inherit'">{{sample}}</output>
 ```
 
 Las variables están asociadas a los inputs de color y tamaño y al select de fuentes a traves de ngModel con propiedades del componente o utilizando referencias locales de la vista, independientes de la lógica del componente.
 
 ```html
-  <input type="color" name="" id="" ngModel #color> // referencia local
-  <input type="number" step="0.5" min="0.5" max="5" [(ngModel)]="size"> // propiedad del componente
+<input type="color" name="" id="" ngModel #color /> // referencia local <input type="number" step="0.5" min="0.5" max="5" [(ngModel)]="size" /> // propiedad del componente
 ```
 
 Estas variables pueden incluso ser leídas en el componente gracias al decorador @ViewChild
@@ -801,22 +794,18 @@ En cuanto a los test:
 El único caso novedoso es el select, que a diferencia del input, tiene asociado el evento change
 
 ```ts
-  it('should use the style values selected', () => {
-    component.availableFonts = new Set(['Arial']);
-    fixture.detectChanges();
-     const selectElement: HTMLSelectElement = debugElement.query(
-      By.css('.styles select')
-    ).nativeElement;
-    const pElement: HTMLParagraphElement = debugElement.query(
-      By.css('p')
-    ).nativeElement;
-    selectElement.value = selectElement.options[1].value;
-    // También válido
-    // selectElement.value = 'Arial';
-    selectElement.dispatchEvent(new Event('change'));
-    fixture.detectChanges();
-    expect(pElement.textContent).toContain('Arial');
-  });
+it("should use the style values selected", () => {
+  component.availableFonts = new Set(["Arial"]);
+  fixture.detectChanges();
+  const selectElement: HTMLSelectElement = debugElement.query(By.css(".styles select")).nativeElement;
+  const pElement: HTMLParagraphElement = debugElement.query(By.css("p")).nativeElement;
+  selectElement.value = selectElement.options[1].value;
+  // También válido
+  // selectElement.value = 'Arial';
+  selectElement.dispatchEvent(new Event("change"));
+  fixture.detectChanges();
+  expect(pElement.textContent).toContain("Arial");
+});
 ```
 
 ## Librerías, más componentes. Proyección de componentes
@@ -1007,7 +996,7 @@ Angular lo permite en base a cualquier selector válido de los contenidos
 
 ```html
 <isdi-header>
-  <ng-content select='.menu'></ng-content>
+  <ng-content select=".menu"></ng-content>
 </isdi-header>
 
 <ng-content select=".main"></ng-content>
@@ -1016,7 +1005,6 @@ Angular lo permite en base a cualquier selector válido de los contenidos
 ```
 
 A su vez el menu se proyecta al componente header, que tendrá definido donde renderizarlo
-
 
 Una vez definido así, usamos el layout en la aplicación como wrapper de los dos elemntos que espera recibir
 
@@ -1064,8 +1052,8 @@ Los pipes con Date, Currency, Decimal y Percent pueden recibir un parámetro que
 que debe haber sido previamente registrada en el fichero de configuración (app.config.ts)
 
 ```ts
-import localeEs from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
+import localeEs from "@angular/common/locales/es";
+import { registerLocaleData } from "@angular/common";
 
 registerLocaleData(localeEs);
 ```
@@ -1073,9 +1061,7 @@ registerLocaleData(localeEs);
 A partir de ahí, podemos indicas la localización ES en los formatos de los pipes citados
 
 ```html
-<p>Pagina cargada el {{today | date: 'fullDate' : '' : 'ES' }}
-  a las {{today | date: 'mediumTime' : '' : 'ES' }}
-</p>
+<p>Pagina cargada el {{today | date: 'fullDate' : '' : 'ES' }} a las {{today | date: 'mediumTime' : '' : 'ES' }}</p>
 ```
 
 Otra posibilidad es cambiar globalmente el locale que usa la aplicación, en el mismo app.config.ts
@@ -1138,6 +1124,7 @@ En el caso de la librería, falta ajustar la configuración como hicimos en la a
 ```shell
 ng g config karma --project core
 ```
+
 Crea el fichero de configuración y lo referencia en angular.json
 
 ```shell
@@ -1196,12 +1183,10 @@ Aunque ya tiene un 100% de coverage, deberíamos testar ue renderiza realmente l
 - Comprobamos que contiene el texto esperado
 
 ```ts
-  it('should render a paragraph', () => {
-    let pElement: HTMLParagraphElement = debugElement.query(
-      By.css('p')
-    ).nativeElement;
-    expect(pElement.textContent).toContain('Página cargada');
-  });
+it("should render a paragraph", () => {
+  let pElement: HTMLParagraphElement = debugElement.query(By.css("p")).nativeElement;
+  expect(pElement.textContent).toContain("Página cargada");
+});
 ```
 
 ### Test del componente Menu
@@ -1210,16 +1195,15 @@ A diferencia de lo que sucede en Jest, tenemos acceso a las propiedades de la in
 Por ejemplo podríamos añadir una nueva opción al menu y comprobar que se renderiza
 
 ```ts
-  it('should render a menu item', () => {
-    component.options.push({
-      path: 'Test',
-      label: 'Test',
-    });
-    fixture.detectChanges();
-    let itemElement: HTMLLIElement = debugElement.queryAll(By.css('li'))[2]
-      .nativeElement;
-    expect(itemElement.textContent).toContain('Test');
+it("should render a menu item", () => {
+  component.options.push({
+    path: "Test",
+    label: "Test",
   });
+  fixture.detectChanges();
+  let itemElement: HTMLLIElement = debugElement.queryAll(By.css("li"))[2].nativeElement;
+  expect(itemElement.textContent).toContain("Test");
+});
 ```
 
 ### Test del componente Counter
@@ -1230,28 +1214,28 @@ El debugElement dispone para es del método triggerEventHandler() para disparar 
 Después de usarlo es importante lanzar **fixture.detectChanges()** para que la vista refleje los cambios en el componente. El proceso de detección del cambio automático en los componentes de Angular no lo es en el entorno de test, por lo que hay que ejecutar el correspondiente método de la fixture
 
 ```ts
- describe('When we use the buttons', () => {
-    let spanElement: HTMLSpanElement;
-    let buttonDebugElements: DebugElement[];
-    beforeEach(() => {
-      spanElement = debugElement.query(By.css('span')).nativeElement;
-      buttonDebugElements = debugElement.queryAll(By.css('button'));
-    });
-
-    it('should increase the display when the button + is clicked', () => {
-      component.counter = 0;
-      buttonDebugElements[1].triggerEventHandler('click');
-      fixture.detectChanges();
-      expect(spanElement.textContent).toBe('1');
-    });
-
-    it('should increase the display when the button + is clicked', () => {
-      component.counter = 0;
-      buttonDebugElements[0].triggerEventHandler('click');
-      fixture.detectChanges();
-      expect(spanElement.textContent).toBe('-1');
-    });
+describe("When we use the buttons", () => {
+  let spanElement: HTMLSpanElement;
+  let buttonDebugElements: DebugElement[];
+  beforeEach(() => {
+    spanElement = debugElement.query(By.css("span")).nativeElement;
+    buttonDebugElements = debugElement.queryAll(By.css("button"));
   });
+
+  it("should increase the display when the button + is clicked", () => {
+    component.counter = 0;
+    buttonDebugElements[1].triggerEventHandler("click");
+    fixture.detectChanges();
+    expect(spanElement.textContent).toBe("1");
+  });
+
+  it("should increase the display when the button + is clicked", () => {
+    component.counter = 0;
+    buttonDebugElements[0].triggerEventHandler("click");
+    fixture.detectChanges();
+    expect(spanElement.textContent).toBe("-1");
+  });
+});
 ```
 
 ### Test del componente Greeting
@@ -1270,45 +1254,41 @@ Como ya vimos antes, disparamos el evento click del botón con el método trigge
 y de nuevo, tras lanzar la detección de cambios, comprobamos que la vista se ha actualizado.
 
 ```ts
-  it('should type a user name and see in the document', () => {
-    let inputElement: HTMLInputElement = debugElement.query(
-      By.css('.user input')
-    ).nativeElement;
-    inputElement.value = 'Test';
-    inputElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
+it("should type a user name and see in the document", () => {
+  let inputElement: HTMLInputElement = debugElement.query(By.css(".user input")).nativeElement;
+  inputElement.value = "Test";
+  inputElement.dispatchEvent(new Event("input"));
+  fixture.detectChanges();
 
-    let pElement: HTMLParagraphElement = debugElement.query(
-      By.css('.user p')
-    ).nativeElement;
-    expect(pElement.textContent).toBe('Hola Test');
+  let pElement: HTMLParagraphElement = debugElement.query(By.css(".user p")).nativeElement;
+  expect(pElement.textContent).toBe("Hola Test");
 
-    let buttonDebugElement = debugElement.query(By.css('.user button'));
-    buttonDebugElement.triggerEventHandler('click');
-    fixture.detectChanges();
-    expect(pElement.textContent).toBe('Hola amigo');
-  });
+  let buttonDebugElement = debugElement.query(By.css(".user button"));
+  buttonDebugElement.triggerEventHandler("click");
+  fixture.detectChanges();
+  expect(pElement.textContent).toBe("Hola amigo");
+});
 ```
 
 ## Challenge 2. Página TODO. Componente 'TODO List' unitario
 
 Crea una lista de tareas en un solo componente
 Las tareas estarán en un array en el propio componente
-Se ajustaran a un modelo o entidad:  id - titulo - isComplete
+Se ajustaran a un modelo o entidad: id - titulo - isComplete
 El id sera generado con crypto
 Se podrá cambiar el estado de la tarea de completa a incompleta
 Se podrá cambiar el titulo en la propia lista
 
 Repasa el uso de
 
-- Built-in control flow (antes directivas estructurales):  @for / @if
+- Built-in control flow (antes directivas estructurales): @for / @if
 - directivas de atributo y CSS: ngClass (y ngStyle)
 - two-way data binding
 - manjadores de eventos: (click) ...
 
-### Solución  del Challenge 2
+### Solución del Challenge 2
 
-Generamos el  modelo de datos (entidad)
+Generamos el modelo de datos (entidad)
 
 ```shell
 ng g i entities/task --project demo
@@ -1334,23 +1314,24 @@ En la vista (template) incluimos
 Como solo hay un input y no hemos visto aún formularios, no lo utilizamos
 
 ```html
-  <details #refDetails>
-    <summary>Añadir tarea</summary>
-    <div class="form">
-      <div class="contorl">
-        <label>
-          <!-- Don`t remove placeholder: used by CSS implementation -->
-          <input type="text" placeholder=" " [(ngModel)]="title" (focus)="addError = ''">
-          <span>Describe la tarea</span>
-        </label>
-      </div>
-      <div class="buttons">
-        <button type="button" (click)="handleAddTask()">Add</button>
-      </div>
+<details #refDetails>
+  <summary>Añadir tarea</summary>
+  <div class="form">
+    <div class="contorl">
+      <label>
+        <!-- Don`t remove placeholder: used by CSS implementation -->
+        <input type="text" placeholder=" " [(ngModel)]="title" (focus)="addError = ''" />
+        <span>Describe la tarea</span>
+      </label>
     </div>
-    @if (addError) {<p class="info-error">{{addError}}</p>}
-
-  </details>
+    <div class="buttons">
+      <button type="button" (click)="handleAddTask()">Add</button>
+    </div>
+  </div>
+  @if (addError) {
+  <p class="info-error">{{addError}}</p>
+  }
+</details>
 ```
 
 - una **lista** que itera sobre el array de tareas
@@ -1362,27 +1343,26 @@ Como solo hay un input y no hemos visto aún formularios, no lo utilizamos
   - dos botones para editar y borrar con sus manejadores del eventoClick
 
 ```html
-  <ul #refLista>
-    @for (item of tasks; track item.id) {
-      <li [title]="item.id" [id]="item.id">
-        <div class="card">
-          <span><input type="checkbox" [checked]="item.isComplete" (change)="handleChangeTasks(item)"></span>
-          <input type="text" [readOnly]="!editMode[item.id]" [(ngModel)]="item.title" (blur)="handleSave(item)" />
+<ul #refLista>
+  @for (item of tasks; track item.id) {
+  <li [title]="item.id" [id]="item.id">
+    <div class="card">
+      <span><input type="checkbox" [checked]="item.isComplete" (change)="handleChangeTasks(item)" /></span>
+      <input type="text" [readOnly]="!editMode[item.id]" [(ngModel)]="item.title" (blur)="handleSave(item)" />
 
-          <!-- <span [contentEditable]="editMode">{{item.title}}</span> -->
+      <!-- <span [contentEditable]="editMode">{{item.title}}</span> -->
 
-          <span class="buttons">
-            @if (!editMode[item.id]) {
-            <button type="button" (click)="handleEdit(item)">Edit</button>
+      <span class="buttons">
+        @if (!editMode[item.id]) {
+        <button type="button" (click)="handleEdit(item)">Edit</button>
 
-            }
-            <button type="button" (click)="handleDeleteTask(item)">Delete</button>
-          </span>
-        </div>
-
-      </li>
-    }
-  </ul>
+        }
+        <button type="button" (click)="handleDeleteTask(item)">Delete</button>
+      </span>
+    </div>
+  </li>
+  }
+</ul>
 ```
 
 Tanto en el details como en la lista (ul) incorporamos referencias locales que permitirán desde el componente acceder a los elementos del DOM, para operaciones como colapsar el details o darle foco al input al activar su edición
@@ -1482,18 +1462,18 @@ Como las tareas iniciales ya son en cierto modo un mock, podemos dejarlas en el 
 En el beforeAll inicial, tenemos que esperar de ngOnInit termine el proceso de carga asíncrona de los datos
 
 ```ts
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TodoComponent],
-    }).compileComponents();
+beforeEach(async () => {
+  await TestBed.configureTestingModule({
+    imports: [TodoComponent],
+  }).compileComponents();
 
-    fixture = TestBed.createComponent(TodoComponent);
-    component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
-    fixture.detectChanges(); // dispara ngOnInit
-    await fixture.whenStable();
-    fixture.detectChanges();
-  });
+  fixture = TestBed.createComponent(TodoComponent);
+  component = fixture.componentInstance;
+  debugElement = fixture.debugElement;
+  fixture.detectChanges(); // dispara ngOnInit
+  await fixture.whenStable();
+  fixture.detectChanges();
+});
 ```
 
 El resto de los test escribe en los inputs, hace check o click y emitir los eventos correspondientes (input, change, blur) a los que hay asociados manejadores, de forma muy similar a lo que ya hemos visto
@@ -1545,7 +1525,7 @@ export class AppComponent {
 ```
 
 ```html
-    <isdi-menu class="menu" [options]="menuOptions"></isdi-menu>
+<isdi-menu class="menu" [options]="menuOptions"></isdi-menu>
 ```
 
 #### Test del componente menu
@@ -1553,12 +1533,12 @@ export class AppComponent {
 En el test del componente que recibe valores en un atributo, podemos simularla asignándole un valor a la propiedad a través de la instancia del componente
 
 ```ts
-  component.options = [
-      {
-        path: 'Test',
-        label: 'Test',
-      },
-    ];
+component.options = [
+  {
+    path: "Test",
+    label: "Test",
+  },
+];
 ```
 
 ### Outputs: eventos hacia el padre
@@ -1599,8 +1579,7 @@ El primer nombre nos indica que en realidad se trata de un observable
 El componente clickers estará escuchando (listener) los eventos countEvent como lo haría con cualquier otro evento
 
 ```html
-<isdi-counter (countEvent)="handleCounter($event)" />
-<isdi-counter (countEvent)="handleCounter($event)" />
+<isdi-counter (countEvent)="handleCounter($event)" /> <isdi-counter (countEvent)="handleCounter($event)" />
 ```
 
 Y en el correspondiente manejador aplicara la lógica necesaria al caso
@@ -1620,17 +1599,15 @@ Otra alternativa más unitaria es acceder al debugElement del componente hijo
 y emitir el evento en directamente con triggerEventHandler para en el expect comprobar la respuesta.
 
 ```ts
-  beforeEach(() => {
-    const counterElement: DebugElement[] = debugElement.queryAll(
-      By.css('isdi-counter')
-    );
-    counterElement[0].triggerEventHandler('countEvent', 10);
-  });
+beforeEach(() => {
+  const counterElement: DebugElement[] = debugElement.queryAll(By.css("isdi-counter"));
+  counterElement[0].triggerEventHandler("countEvent", 10);
+});
 
-  it('should respond to the event changing its values', () => {
-    expect(component.clicks).toBe(1);
-    expect(component.collected).toBe(10);
-  });
+it("should respond to the event changing its values", () => {
+  expect(component.clicks).toBe(1);
+  expect(component.collected).toBe(10);
+});
 ```
 
 #### Test del componente click. SpyOn en Jasmine
@@ -1655,7 +1632,7 @@ Tal como lo estamos usando, el spy es en realidad un mock (como jest.fn) sin nin
 Para que sea realmente un spy, manteniendo la implementación original, le añadimos el método callThrough
 
 ```ts
-  pyOn(component.countEvent, 'next').and.callThrough();
+pyOn(component.countEvent, "next").and.callThrough();
 ```
 
 #### Challenge. Comenzando un Design system
@@ -1684,7 +1661,7 @@ Podríamos refactorizar la lista de tareas o crear una nueva, e.g. de notas
 En lugar de refactorizar la feature que ya tenemos, podemos crear una nueva con notas, de características muy similares
 
 Las notas estarán en un array en el propio componente
-Se ajustaran a un modelo o entidad:  id - titulo autor - isImportant
+Se ajustaran a un modelo o entidad: id - titulo autor - isImportant
 El id sera generado con crypto
 Se podrá cambiar el estado de la nota de importante a no
 Se podrá cambiar el titulo y autor en re-aprovechando el formulario de añadir
@@ -1707,12 +1684,12 @@ La página tendrá su ruta y su opción del menú consumirá el componente notes
 Definimos la nueva entidad
 
 ```ts
-  export interface Note {
-    id: string;
-    title: string;
-    author: string;
-    isImportant: boolean;
-  }
+export interface Note {
+  id: string;
+  title: string;
+  author: string;
+  isImportant: boolean;
+}
 ```
 
 De nuevo creamos un mock de datos iniciales, como función que devuelve una promesa en un fichero independiente.
@@ -1859,42 +1836,42 @@ En el componente **noteAdd** el arrange es muy similar a la parte añadir del co
 Lo que cambia es el assert, ya que ahora espiamos el eventEmitter y comprobamos que ha sido llamado
 
 ```ts
-  spyOn(component.addEvent, 'next');
-  expect(component.addEvent.next).toHaveBeenCalledWith(mockNoteData);
+spyOn(component.addEvent, "next");
+expect(component.addEvent.next).toHaveBeenCalledWith(mockNoteData);
 ```
 
 #### Test del componente noteCard
 
-En el componente **noteCard** el arrange vuelve a ser muy similar para los tres casos que testamos, y el expecte en cada caso es que se  haya disparado el evento que estaremos espiando
+En el componente **noteCard** el arrange vuelve a ser muy similar para los tres casos que testamos, y el expecte en cada caso es que se haya disparado el evento que estaremos espiando
 
 - When the user modify a note checking it for important
 
 ```ts
-  spyOn(component.updateEvent, 'next');
-  expect(component.updateEvent.next).toHaveBeenCalledOnceWith({
-    isImportant: true,
-  } as Note);
+spyOn(component.updateEvent, "next");
+expect(component.updateEvent.next).toHaveBeenCalledOnceWith({
+  isImportant: true,
+} as Note);
 ```
 
 - When the user modify a note writing a new title
 
 ```ts
-  spyOn(component.updateEvent, 'next');
-  expect(component.updateEvent.next).toHaveBeenCalledOnceWith({
-    ...mockNote,
-    title: 'Updated title',
-  } as Note);
+spyOn(component.updateEvent, "next");
+expect(component.updateEvent.next).toHaveBeenCalledOnceWith({
+  ...mockNote,
+  title: "Updated title",
+} as Note);
 ```
 
 - When the user click de button for delete a note
 
 ```ts
-  spyOn(component.deleteEvent, 'next');
-  component.item = { ...mockNote, id: '1' };
-  expect(component.deleteEvent.next).toHaveBeenCalledOnceWith({
-    ...mockNote,
-    id: '1',
-  });
+spyOn(component.deleteEvent, "next");
+component.item = { ...mockNote, id: "1" };
+expect(component.deleteEvent.next).toHaveBeenCalledOnceWith({
+  ...mockNote,
+  id: "1",
+});
 ```
 
 Aunque ya lo hemos visto, recordemos que tal como lo estamos usando, el spy es en realidad un mock (como jest.fn) sin ninguna implementación.
@@ -1902,7 +1879,7 @@ Aunque ya lo hemos visto, recordemos que tal como lo estamos usando, el spy es e
 Para que sea realmente un spy, manteniendo la implementación original, le añadimos el método callThrough
 
 ```ts
-  pyOn(component.deleteEvent, 'next').and.callThrough();
+pyOn(component.deleteEvent, "next").and.callThrough();
 ```
 
 #### Problemas en el orden de los test
@@ -1931,42 +1908,36 @@ En este caso, la funcionalidad del componente es responder a los eventos en los 
 When the component NoteAdd emit the event addEvent
 
 ```ts
-  component.notes = [{ id: '1' } as Note];
-  const addNoteElement: DebugElement = debugElement.query(
-    By.css('isdi-note-add')
-  );
-  addNoteElement.triggerEventHandler('addEvent', { id: 2 });
+component.notes = [{ id: "1" } as Note];
+const addNoteElement: DebugElement = debugElement.query(By.css("isdi-note-add"));
+addNoteElement.triggerEventHandler("addEvent", { id: 2 });
 
-  expect(component.notes.length).toBe(2);
+expect(component.notes.length).toBe(2);
 ```
 
 When the component NoteCard emit the event updateEvent
 
 ```ts
-  component.notes = [{ id: '1' } as Note, { id: '2' } as Note];
-  fixture.detectChanges();
-  const cardNoteElement: DebugElement[] = debugElement.queryAll(
-    By.css('isdi-note-card')
-  );
-  cardNoteElement[0].triggerEventHandler('updateEvent', {
-    id: '1',
-    title: 'Test',
-  } as Note);
+component.notes = [{ id: "1" } as Note, { id: "2" } as Note];
+fixture.detectChanges();
+const cardNoteElement: DebugElement[] = debugElement.queryAll(By.css("isdi-note-card"));
+cardNoteElement[0].triggerEventHandler("updateEvent", {
+  id: "1",
+  title: "Test",
+} as Note);
 
-  expect(component.notes[0].title).toBe('Test');
+expect(component.notes[0].title).toBe("Test");
 ```
 
 When the component NoteCard emit the event deleteEvent
 
 ```ts
-  component.notes = [{ id: '1' } as Note];
-  fixture.detectChanges();
-  const cardNoteElement: DebugElement = debugElement.query(
-    By.css('isdi-note-card')
-  );
-  cardNoteElement.triggerEventHandler('deleteEvent', { id: '1' });
+component.notes = [{ id: "1" } as Note];
+fixture.detectChanges();
+const cardNoteElement: DebugElement = debugElement.query(By.css("isdi-note-card"));
+cardNoteElement.triggerEventHandler("deleteEvent", { id: "1" });
 
-  expect(component.notes.length).toBe(0);
+expect(component.notes.length).toBe(0);
 ```
 
 ## Abstracción de la lógica en servicios. Repositorio
@@ -1990,12 +1961,12 @@ Clonamos completamente la feature de Notes para disponer de una nueva para aplic
 - la entity Course incluirá
 
 ```ts
-  export interface Curse {
-    id: string;
-    title: string;
-    author: string;
-    isComplete: boolean;
-  }
+export interface Curse {
+  id: string;
+  title: string;
+  author: string;
+  isComplete: boolean;
+}
 ```
 
 - la pagina courses, su ruta y su opción en el menú
@@ -2021,8 +1992,8 @@ Como inicialmente guardará los datos en memoria, devolverá siempre el array de
 export interface Repo<T extends { id: string }> {
   getAll(): Promise<T[]>;
   add(newItem: Partial<T>): Promise<T[]>;
-  update(id: T['id'], updatedItem: Partial<T>): Promise<T[]>;
-  delete(id: T['id']): Promise<T[]>;
+  update(id: T["id"], updatedItem: Partial<T>): Promise<T[]>;
+  delete(id: T["id"]): Promise<T[]>;
 }
 ```
 
@@ -2053,13 +2024,13 @@ El servicio lo es gracias a su decorador, que define la aplicación global como 
 Para que se produzca la inyección de dependencias en un componente vasta tener una propiedad inicializada por un parámetro del constructor con un tipo que corresponda a un servicio, definido por el decorador @injectable
 
 ```ts
-  export class CoursesListComponent implements OnInit {
-    constructor(private repo: CoursesInMemoryRepoService) {}
+export class CoursesListComponent implements OnInit {
+  constructor(private repo: CoursesInMemoryRepoService) {}
 
-    ngOnInit(): void {
-      this.repo.getAll().then((courses) => (this.courses = courses));
-    }
+  ngOnInit(): void {
+    this.repo.getAll().then((courses) => (this.courses = courses));
   }
+}
 ```
 
 En el repo tendremos toda la lógica de gestión de los datos del array, que antes estaba en el componente
@@ -2131,11 +2102,11 @@ En lo que se refiere a los métodos podríamos hacerlo a traves del prototipo, y
 Como todos los métodos del servicio son asíncronos, es necesario que el test lo sea y que ejecutemos fixture.whenStable(), similar al act que utilizamos en Jest.
 
 ```ts
-  spyOn(CoursesInMemoryRepoService.prototype, 'add').and.callThrough();
+spyOn(CoursesInMemoryRepoService.prototype, "add").and.callThrough();
 
-  await fixture.whenStable();
-  expect(CoursesInMemoryRepoService.prototype.add).toHaveBeenCalled();
-  expect(component.courses.length).toBe(2);
+await fixture.whenStable();
+expect(CoursesInMemoryRepoService.prototype.add).toHaveBeenCalled();
+expect(component.courses.length).toBe(2);
 ```
 
 Una alternativa más integrada en Angular es convertir a nuestro entorno del test en el provider del servicio cuando se instancia el componente que estamos testando
@@ -2160,13 +2131,13 @@ De esta forma además conseguimos acceso no solo a los métodos del servicio, ta
 En consecuencia, espiamos directamente la propiedad service, correspondiente a la instancia del servicio que se inyectará en el componente
 
 ```ts
-  service.courses = [{ id: '1' } as Curse, { id: '2' } as Curse];
-  fixture.detectChanges();
-  spyOn(service, 'update').and.callThrough();
+service.courses = [{ id: "1" } as Curse, { id: "2" } as Curse];
+fixture.detectChanges();
+spyOn(service, "update").and.callThrough();
 
-    await fixture.whenStable();
-    expect(service.update).toHaveBeenCalled();
-    expect(component.courses[0].title).toBe('Test');
+await fixture.whenStable();
+expect(service.update).toHaveBeenCalled();
+expect(component.courses[0].title).toBe("Test");
 ```
 
 En este caso, como el servicio solo almacena datos en memoria, no lo hemos moqueado, sino espiado, por lo queda testado al testar el componente que lo usa
@@ -2265,29 +2236,29 @@ Los test en si son muy simples: ejecutan cada uno de los métodos del servicio h
 - para el método get, con o sin datas en el store
 
 ```ts
-  spyOn(window.localStorage, 'getItem');
-  service.get();
-  expect(window.localStorage.getItem).toHaveBeenCalled();
+spyOn(window.localStorage, "getItem");
+service.get();
+expect(window.localStorage.getItem).toHaveBeenCalled();
 
-  spyOn(window.localStorage, 'getItem').and.returnValue('[]');
-  const result = service.get();
-  expect(result).toEqual([]);
+spyOn(window.localStorage, "getItem").and.returnValue("[]");
+const result = service.get();
+expect(result).toEqual([]);
 ```
 
 - para el método set
 
 ```ts
-  spyOn(window.localStorage, 'setItem');
-  service.set([]);
-  expect(window.localStorage.setItem).toHaveBeenCalled();
+spyOn(window.localStorage, "setItem");
+service.set([]);
+expect(window.localStorage.setItem).toHaveBeenCalled();
 ```
 
 - para el método remove
 
 ```ts
-  spyOn(window.localStorage, 'removeItem');
-  service.remove();
-  expect(window.localStorage.removeItem).toHaveBeenCalled();
+spyOn(window.localStorage, "removeItem");
+service.remove();
+expect(window.localStorage.removeItem).toHaveBeenCalled();
 ```
 
 ### Uso del servicio en un nuevo repo: courses.local.repo
@@ -2332,50 +2303,45 @@ En el encontraremos inyectado el servicio StorageService que podemos moquear fá
 - getAll()
 
 ```ts
-  spyOn(StorageService.prototype, 'get').and.returnValue([]);
-  const result = await service.getAll();
-  expect(StorageService.prototype.get).toHaveBeenCalled();
-  expect(result).toEqual([]);
+spyOn(StorageService.prototype, "get").and.returnValue([]);
+const result = await service.getAll();
+expect(StorageService.prototype.get).toHaveBeenCalled();
+expect(result).toEqual([]);
 ```
 
 - add()
 
 ```ts
-  spyOn(StorageService.prototype, 'get').and.returnValue([]);
-  spyOn(StorageService.prototype, 'set');
-  const result = await service.add({ id: '1' });
-  expect(StorageService.prototype.get).toHaveBeenCalled();
-  expect(StorageService.prototype.set).toHaveBeenCalled();
-  expect(result).toEqual([{ id: '1', isComplete: false } as Course]);
+spyOn(StorageService.prototype, "get").and.returnValue([]);
+spyOn(StorageService.prototype, "set");
+const result = await service.add({ id: "1" });
+expect(StorageService.prototype.get).toHaveBeenCalled();
+expect(StorageService.prototype.set).toHaveBeenCalled();
+expect(result).toEqual([{ id: "1", isComplete: false } as Course]);
 ```
 
 - update()
 
 ```ts
-  spyOn(StorageService.prototype, 'get').and.returnValue([
-    { id: '1', isComplete: false },
-    { id: '2', isComplete: false },
-  ]);
-  const result = await service.update('1', { id: '1', isComplete: true });
-  expect(StorageService.prototype.get).toHaveBeenCalled();
-  expect(StorageService.prototype.set).toHaveBeenCalled();
-  expect(result).toEqual([
-    { id: '1', isComplete: true } as Course,
-    { id: '2', isComplete: false } as Course,
-  ]);
+spyOn(StorageService.prototype, "get").and.returnValue([
+  { id: "1", isComplete: false },
+  { id: "2", isComplete: false },
+]);
+const result = await service.update("1", { id: "1", isComplete: true });
+expect(StorageService.prototype.get).toHaveBeenCalled();
+expect(StorageService.prototype.set).toHaveBeenCalled();
+expect(result).toEqual([{ id: "1", isComplete: true } as Course, { id: "2", isComplete: false } as Course]);
 ```
 
 - delete()
 
 ```ts
-  spyOn(StorageService.prototype, 'get').and.returnValue([
-    { id: '1', isComplete: false },
-  ]);
-  spyOn(StorageService.prototype, 'set');
-  const result = await service.delete('1');
-  expect(StorageService.prototype.get).toHaveBeenCalled();
-  expect(StorageService.prototype.set).toHaveBeenCalled();
-  expect(result).toEqual([]);
+spyOn(StorageService.prototype, "get").and.returnValue([{ id: "1", isComplete: false }]);
+spyOn(StorageService.prototype, "set");
+const result = await service.delete("1");
+expect(StorageService.prototype.get).toHaveBeenCalled();
+expect(StorageService.prototype.set).toHaveBeenCalled();
+expect(result).toEqual([]);
 ```
 
 ### Uso del repo courses.local.repo en el componente
@@ -2393,39 +2359,33 @@ Le damos valor directamente a la propiedad courses del servicio y comprobamos co
 - getAll()
 
 ```ts
-  service.courses = [];
-  const result = await service.getAll();
-  expect(result).toEqual([]);
+service.courses = [];
+const result = await service.getAll();
+expect(result).toEqual([]);
 ```
 
 - add()
 
 ```ts
-  service.courses = [];
-  const result = await service.add({ id: '1' });
-  expect(result).toEqual([{ id: '1', isComplete: false } as Course]);
+service.courses = [];
+const result = await service.add({ id: "1" });
+expect(result).toEqual([{ id: "1", isComplete: false } as Course]);
 ```
 
 - update()
 
 ```ts
-  service.courses = [
-    { id: '1', isComplete: false } as Course,
-    { id: '2', isComplete: false } as Course,
-  ];
-  const result = await service.update('1', { id: '1', isComplete: true });
-  expect(result).toEqual([
-    { id: '1', isComplete: true } as Course,
-    { id: '2', isComplete: false } as Course,
-  ]);
+service.courses = [{ id: "1", isComplete: false } as Course, { id: "2", isComplete: false } as Course];
+const result = await service.update("1", { id: "1", isComplete: true });
+expect(result).toEqual([{ id: "1", isComplete: true } as Course, { id: "2", isComplete: false } as Course]);
 ```
 
 - delete()
 
 ```ts
-  service.courses = [{ id: '1', isComplete: false } as Course];
-  const result = await service.delete('1');
-  expect(result).toEqual([]);
+service.courses = [{ id: "1", isComplete: false } as Course];
+const result = await service.delete("1");
+expect(result).toEqual([]);
 ```
 
 ## NEXT Schedule: aplicación demo
@@ -2469,17 +2429,17 @@ pero eso es propio del protocolo, no de los observables
 En consecuencia, al suscribirnos a un observable le proporcionamos la callback que se ejecutara ante cada dato
 
 ```ts
-  observable.subscribe( data => console.log(data))
+observable.subscribe((data) => console.log(data));
 ```
 
 Si necesitamos pasarle más callback lo haremos en forma de objeto
 
 ```ts
-  observable.subscribe({
-    next: (data) => console.log(data),
-    error: (error: Error) => console.error(error.message),
-    complete: () => {} // make anyway
-  });
+observable.subscribe({
+  next: (data) => console.log(data),
+  error: (error: Error) => console.error(error.message),
+  complete: () => {}, // make anyway
+});
 ```
 
 ### Nueva aplicación demo.rx
@@ -2524,11 +2484,12 @@ Probamos que compila y que ejecuta los tests
 ```
 
 - Copiamos desde demo
+
   - el componente menu
   - la entity courses
   - los interfaces menu.options y repo
   - las páginas home y curses
-  - los componentes course-* [list, card, add]
+  - los componentes course-\* [list, card, add]
   - los servicios storage.service y courses.local.repo.service, incluyendo mock.data
 
 - Corregimos el contenido de
@@ -2570,8 +2531,8 @@ import { Observable } from "rxjs";
 export interface Repo<T extends { id: string }> {
   getAll(): Observable<T[]>;
   add(newItem: Partial<T>): Observable<T[]>;
-  update(id: T['id'], updatedItem: Partial<T>): Observable<T[]>;
-  delete(id: T['id']): Observable<T[]>;
+  update(id: T["id"], updatedItem: Partial<T>): Observable<T[]>;
+  delete(id: T["id"]): Observable<T[]>;
 }
 ```
 
@@ -2619,14 +2580,14 @@ Al tener observables en vez de promesas, debemos cambiar los tests correspondien
 En su lugar, tendremos que suscribirnos al observable
 
 ```ts
-  beforeEach(() => {
-    spyOn(StorageService.prototype, 'get').and.returnValue([]);
+beforeEach(() => {
+  spyOn(StorageService.prototype, "get").and.returnValue([]);
 
-    service.getAll().subscribe((result) => {
-      expect(StorageService.prototype.get).toHaveBeenCalled();
-      expect(result).toEqual([]);
-    });
+  service.getAll().subscribe((result) => {
+    expect(StorageService.prototype.get).toHaveBeenCalled();
+    expect(result).toEqual([]);
   });
+});
 ```
 
 ### Uso del repo basado en observables en el componente
@@ -2666,7 +2627,7 @@ Donde antes moqueábamos el servicio con un and.resolveTo,
 ahora retornaremos un observable, utilizando el operador of que ya conocemos
 
 ```ts
-  spyOn(service, 'getAll').and.returnValue(of([{ id: '1' } as Course]));
+spyOn(service, "getAll").and.returnValue(of([{ id: "1" } as Course]));
 ```
 
 ## Conexiones Http con el backend
@@ -2680,15 +2641,14 @@ Al crear el interface del repositorio podríamos optar por dos opciones:
   - los métodos add y update devuelven el item creado/actualizado como observable
   - el método delete devuelve un observable void
 
-
 ```ts
 import { Observable } from "rxjs";
 
 export interface Repo<T extends { id: string }> {
   getAll(): Observable<T[]>;
   add(newItem: Partial<T>): Observable<T>;
-  update(id: T['id'], updatedItem: Partial<T>): Observable<T>;
-  delete(id: T['id']): Observable<void>;
+  update(id: T["id"], updatedItem: Partial<T>): Observable<T>;
+  delete(id: T["id"]): Observable<void>;
 }
 ```
 
@@ -2702,8 +2662,8 @@ import { Observable } from "rxjs";
 export interface Repo<T extends { id: string }> {
   getAll(): Observable<T[]>;
   add(newItem: Partial<T>): Observable<T[]>;
-  update(id: T['id'], updatedItem: Partial<T>): Observable<T[]>;
-  delete(id: T['id']): Observable<T[]>;
+  update(id: T["id"], updatedItem: Partial<T>): Observable<T[]>;
+  delete(id: T["id"]): Observable<T[]>;
 }
 ```
 
@@ -2732,11 +2692,11 @@ Añadimos la carpeta server, donde querremos los datos de nuestro fake-server
   mkdir server
 ```
 
- Creamos un script en el package json, sin el modificador --watch, que a pasado a estar por defecto
+Creamos un script en el package json, sin el modificador --watch, que a pasado a estar por defecto
 
 ```json
  "server": "json-server -p 3030 server/db.json"
-  ```
+```
 
 Si no crea el fichero db.json lo creamos a mano y en cualquier caso añadimos la propiedad courses con el array de ejemplos que teníamos en services/mock.data.ts
 
@@ -2823,9 +2783,9 @@ que importaremos desde **'@angular/common/http/testing'**
 El módulo HttpClientTestingModule se importa en el test para que funcione como provider
 
 ```ts
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-    });
+TestBed.configureTestingModule({
+  imports: [HttpClientTestingModule],
+});
 ```
 
 El controller es la instancia de HttpTestingController que hará de mock de fetch para crear la request http
@@ -2849,14 +2809,14 @@ En el test de un método que use httpClient
 - creamos la request http simulada
 
 ```ts
-  const testRequest: TestRequest = controller.expectOne(expectedUrl);
-  expect(testRequest.request.method).toEqual('GET');
+const testRequest: TestRequest = controller.expectOne(expectedUrl);
+expect(testRequest.request.method).toEqual("GET");
 ```
 
 - lanzamos la request definiendo la response moqueada que queremos que le llegue a la suscripción
 
 ```ts
-  testRequest.flush([]);
+testRequest.flush([]);
 ```
 
 ### Uso en el componente CursesList
@@ -2881,8 +2841,8 @@ Lo indicaremos el los entornos de sus tests
 En Course además moquearemos el método getAll, para evitar que el componente CoursesList, al llamar a getAll en el OnInit use el servicio HttpCliente real
 
 ```ts
-  service = TestBed.inject(CoursesApiRepoService);
-  spyOn(service, 'getAll').and.returnValue(of([]));
+service = TestBed.inject(CoursesApiRepoService);
+spyOn(service, "getAll").and.returnValue(of([]));
 ```
 
 Además habrá que hacer ajustes en los tests de CoursesList
@@ -2903,16 +2863,12 @@ Además habrá que hacer ajustes en los tests de CoursesList
 Por ejemplo en el método add
 
 ```ts
-  spyOn(service, 'add').and.returnValue(
-    of([{ id: '2' } as unknown as Course])
-  );
-  const addCourseElement: DebugElement = debugElement.query(
-    By.css('isdi-course-add')
-  );
-  addCourseElement.triggerEventHandler('addEvent', 'any value');
+spyOn(service, "add").and.returnValue(of([{ id: "2" } as unknown as Course]));
+const addCourseElement: DebugElement = debugElement.query(By.css("isdi-course-add"));
+addCourseElement.triggerEventHandler("addEvent", "any value");
 
-  expect(service.add).toHaveBeenCalled();
-  expect(component.courses).toEqual([{ id: '2' } as Course]);
+expect(service.add).toHaveBeenCalled();
+expect(component.courses).toEqual([{ id: "2" } as Course]);
 ```
 
 ### Gestión de errores en el servicio
@@ -2964,18 +2920,18 @@ que usaremos en todas las operaciones de nuestro servicio de cara al backend
 En el test del servicio, habrá que incluir al menos un caso que involucre el handler de errores
 
 ```ts
-  service.getAll().subscribe({
-    error: (error) => expect(error.message).toContain('Fetch error'),
-  });
+service.getAll().subscribe({
+  error: (error) => expect(error.message).toContain("Fetch error"),
+});
 
-  const testRequest: TestRequest = controller.expectOne(expectedUrl);
-  expect(testRequest.request.method).toEqual('GET');
+const testRequest: TestRequest = controller.expectOne(expectedUrl);
+expect(testRequest.request.method).toEqual("GET");
 
-  testRequest.error('Fetch error' as unknown as ProgressEvent);
-  testRequest.flush('Error test', {
-    status: 400,
-    statusText: 'Bad Request',
-  });
+testRequest.error("Fetch error" as unknown as ProgressEvent);
+testRequest.flush("Error test", {
+  status: 400,
+  statusText: "Bad Request",
+});
 ```
 
 testRequest puede hacer flush con un código de error 400 o lanzar un error,
@@ -3016,16 +2972,16 @@ o definir la forma que consideremos para der feedback al usuario
 ```html
 @if (errors.load) {
 
-  <div class="error-info">
-    <p>No se puede acceder al servidor</p>
-    <p>{{errors.load}}</p>
-  </div>
+<div class="error-info">
+  <p>No se puede acceder al servidor</p>
+  <p>{{errors.load}}</p>
+</div>
 
 } @else {
 
-  <ul class="list">
+<ul class="list">
   ...
-  </ul>
+</ul>
 
 }
 ```
@@ -3035,25 +2991,19 @@ Como consecuencia tenemos que completar los test con los cuatro casos en que pue
 - la carga de datos
 
 ```ts
-  (service.getAll as jasmine.Spy).and.returnValue(
-    throwError(() => new Error('Load Courses Error'))
-  );
-  component.ngOnInit();
+(service.getAll as jasmine.Spy).and.returnValue(throwError(() => new Error("Load Courses Error")));
+component.ngOnInit();
 
-  expect(component.errors.load).toEqual('Load Courses Error');
+expect(component.errors.load).toEqual("Load Courses Error");
 ```
 
 - los eventos emitidos desde los componentes hijos: addEvent, updateEvent y deleteEvent
 
 ```ts
-  spyOn(service, 'add').and.returnValue(
-    throwError(() => new Error('Add Course Error'))
-  );
-  const addCourseElement: DebugElement = debugElement.query(
-    By.css('isdi-course-add')
-  );
-  addCourseElement.triggerEventHandler('addEvent', 'any value');
-  expect(component.errors.add).toEqual('Add Course Error');
+spyOn(service, "add").and.returnValue(throwError(() => new Error("Add Course Error")));
+const addCourseElement: DebugElement = debugElement.query(By.css("isdi-course-add"));
+addCourseElement.triggerEventHandler("addEvent", "any value");
+expect(component.errors.add).toEqual("Add Course Error");
 ```
 
 ## Flux: Servicio con estado para el Store. BehaviorSubject y Observables
@@ -3081,12 +3031,12 @@ La página tendrá su ruta y su opción del menú consumirá el componente tasks
 Definimos la nueva entidad
 
 ```ts
-  export interface Task {
-    id: string;
-    title: string;
-    author: string;
-    isImportant: boolean;
-  }
+export interface Task {
+  id: string;
+  title: string;
+  author: string;
+  isImportant: boolean;
+}
 ```
 
 De nuevo creamos un endpoint en el back con unos datos iniciales.
@@ -3126,7 +3076,7 @@ sino los correspondientes observables
 Como propiedades **privadas** de la clase, declaramos los **BehaviorSubjects** correspondientes a cada propiedad del estado, que nos proporcionaran los correspondientes observables
 
 En el constructor creamos los BehaviorSubjects de cada parte del estado,
-que directamente emiten  los valores iniciales
+que directamente emiten los valores iniciales
 
 ```ts
   private tasks$: BehaviorSubject<Task[]>;
@@ -3215,11 +3165,11 @@ El componente lista (TasksList) se simplifica enormemente
 
 ```ts
 export class TasksListComponent implements OnInit {
-
   constructor(public tasksStore: TasksStoreService) {}
 
-  ngOnInit(): void {this.tasksStore.loadTasks()}
-
+  ngOnInit(): void {
+    this.tasksStore.loadTasks();
+  }
 }
 ```
 
@@ -3251,25 +3201,22 @@ Ya en ma vista haremos un @if global, que nos permita
   - de nuevo usando el pipe async, suscribirnos al observable con el array de datos para iterarlo
 
 ```html
-  @if (tasksStore.getState().errors| async; as errors) {
+@if (tasksStore.getState().errors| async; as errors) { @if(errors.load) {
+<div class="error-info">
+  <p>No se puede acceder al servidor</p>
+  <p>{{errors.load}}</p>
+</div>
+} @else {
 
-    @if(errors.load) {
-    <div class="error-info">
-      <p>No se puede acceder al servidor</p>
-      <p>{{errors.load}}</p>
-    </div>
-    } @else {
-
-    <ul class="list">
-      @for (item of tasksStore.getState().data| async; track item.id) {
-      <li [title]="item.id" [id]="item.id">
-        <isdi-task-card [item]="item" />
-      </li>
-      }
-    </ul>
-
-    }
+<ul class="list">
+  @for (item of tasksStore.getState().data| async; track item.id) {
+  <li [title]="item.id" [id]="item.id">
+    <isdi-task-card [item]="item" />
+  </li>
   }
+</ul>
+
+} }
 ```
 
 Como se ve, los componentes TasksAdd y TasksCard, ya no tienen asociados manejadores de eventos.
@@ -3287,8 +3234,8 @@ ahora se ejecuta un método del servicio, que a su vez emite un valor a través 
 Pos ejemplo, en el método handleAddTask del componente TaskAdd
 
 ```ts
-  // ELIMINADO this.addEvent.next(newTaskData);
-  this.tasksStore.addTask(newTaskData);
+// ELIMINADO this.addEvent.next(newTaskData);
+this.tasksStore.addTask(newTaskData);
 ```
 
 En realidad hemos pasado de
@@ -3305,9 +3252,9 @@ De esta forma abstraemos el estado y controlamos quien pude modificarlo, aplican
 El método getState se testa suscribiéndose al resultado de ejecutarlo y comprobando que se reciben las valores iniciales de las propiedades del estado definidos en el servicio (initialState)
 
 ```ts
-  const result = service.getState();
-  result.data.subscribe((data) => expect(data).toEqual([]));
-  result.errors.subscribe((errors) => expect(errors).toEqual({}));
+const result = service.getState();
+result.data.subscribe((data) => expect(data).toEqual([]));
+result.errors.subscribe((errors) => expect(errors).toEqual({}));
 ```
 
 Los metodos que gestionan el estado se testan
@@ -3318,14 +3265,12 @@ Los metodos que gestionan el estado se testan
 - comprobando en la suscripción que los datos recibidos son los que proporciono el mock del repo
 
 ```ts
-  const mockTasks = [{ id: 1 }] as unknown as Task[];
-  spyOn(TasksApiRepoService.prototype, 'getAll').and.returnValue(
-    of(mockTasks)
-  );  
-  service.loadTasks();
-  service.getState().data.subscribe((data) => {
-    expect(data).toEqual(mockTasks);
-  });
+const mockTasks = [{ id: 1 }] as unknown as Task[];
+spyOn(TasksApiRepoService.prototype, "getAll").and.returnValue(of(mockTasks));
+service.loadTasks();
+service.getState().data.subscribe((data) => {
+  expect(data).toEqual(mockTasks);
+});
 ```
 
 En los casos de error el test es similar
@@ -3334,14 +3279,12 @@ En los casos de error el test es similar
 - nos suscribimos a los errores
 
 ```ts
-  const mockErrorMessage = 'Test error';
-  spyOn(TasksApiRepoService.prototype, 'getAll').and.returnValue(
-    throwError(() => new Error(mockErrorMessage))
-  );
-  service.loadTasks();
-  service.getState().errors.subscribe((errors) => {
-    expect(errors.load).toEqual(mockErrorMessage);
-  });
+const mockErrorMessage = "Test error";
+spyOn(TasksApiRepoService.prototype, "getAll").and.returnValue(throwError(() => new Error(mockErrorMessage)));
+service.loadTasks();
+service.getState().errors.subscribe((errors) => {
+  expect(errors.load).toEqual(mockErrorMessage);
+});
 ```
 
 ### Test de los componentes que utilizan el servicio
@@ -3367,12 +3310,11 @@ ahora espía un método del servicioStore, en este caso addTask.
 Donde antes era llamado el primero, ahora lo es el segundo.
 
 ```ts
-  spyOn(service, 'addTask');
-  expect(service.addTask).toHaveBeenCalledWith(mockTaskData);
+spyOn(service, "addTask");
+expect(service.addTask).toHaveBeenCalledWith(mockTaskData);
 ```
 
 Lo mismo sucede en los tests de TaskCard
-
 
 ## Gestión de errores centralizada. Interceptores
 
@@ -3395,9 +3337,9 @@ En Angular 17 los interceptors no son clases sino **funciones** que reciben dos 
 Vemos que se esta aplicando el patrón middleware de forma similar a como hace Express, por lo que se pueden utilizar sucesivos interceptor
 
 ```ts
-  export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
-    return next(req);
-  };
+export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
+  return next(req);
+};
 ```
 
 Para usarlo, basta indicarlo en el provider de httpClient que tenemos definido en app.config
@@ -3411,24 +3353,23 @@ Solo queda darle funcionalidad al interceptor modificando el Observable de HttpE
 Para ello usaremos un pipe que ejecutará el operador catchError de RsJx como hasta ahora hacía el servicio CoursesApiRepoService en cada uno de sus métodos
 
 ```ts
-  export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
-    return next(req).pipe(catchError(handleError));
-  };
+export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
+  return next(req).pipe(catchError(handleError));
+};
 ```
 
 El código del errorHandler es el mismo que ya teníamos en los repos, que ahora retiraremos de tasks.api.repo y de courses.api.repo, con la evidente ventaja de compartirlo en ambos y en cualquier otro repo que podamos añadir
 
 ```ts
-  const handleError = (errorResponse: HttpErrorResponse) => {
-    let errorMessage: string;
-    if (errorResponse.status === 0) {
-      errorMessage = `Se ha producido un error interno ${errorResponse.error}`;
-    } else {
-      errorMessage = `El Backend ha devuelto un código ${errorResponse.status} con el mensaje ${errorResponse.error}`;
-    }
-    return throwError(() => new Error(errorMessage));
-  };
-
+const handleError = (errorResponse: HttpErrorResponse) => {
+  let errorMessage: string;
+  if (errorResponse.status === 0) {
+    errorMessage = `Se ha producido un error interno ${errorResponse.error}`;
+  } else {
+    errorMessage = `El Backend ha devuelto un código ${errorResponse.status} con el mensaje ${errorResponse.error}`;
+  }
+  return throwError(() => new Error(errorMessage));
+};
 ```
 
 ### Test del interceptor de errores
@@ -3436,36 +3377,32 @@ El código del errorHandler es el mismo que ya teníamos en los repos, que ahora
 Para testarlo de forma unitaria, tenemos que ejecutarlo pasándole los parámetros adecuados:
 
 - la función next moqueada, utilizando **jasmine.createSpy()** [el equivalente a jest.fn()] para que lance una httpErrorResponse con código 0 o distinto de 0
-- la request, real o moqueada con **jasmine.createSpyObj()** 
+- la request, real o moqueada con **jasmine.createSpyObj()**
 
 ```ts
-  const httpErrorResponse = new HttpErrorResponse({ status: 0 [400]});
-  const nextMock: HttpHandlerFn = jasmine
-    .createSpy()
-    .and.returnValue(throwError(() => httpErrorResponse));
+const httpErrorResponse = new HttpErrorResponse({ status: (0)[400] });
+const nextMock: HttpHandlerFn = jasmine.createSpy().and.returnValue(throwError(() => httpErrorResponse));
 
-  // const requestMock = new HttpRequest('GET', '/test'); ====> objeto real
-  const requestMock = jasmine.createSpyObj('HttpRequest', [
-    'doesNotMatter',
-  ]);
+// const requestMock = new HttpRequest('GET', '/test'); ====> objeto real
+const requestMock = jasmine.createSpyObj("HttpRequest", ["doesNotMatter"]);
 ```
 
 Una vez ejecutado el interceptor, no suscribimos para hacer el assert en el handle del error, esperando un mensaje de error u otro
 
 ```ts
-  interceptor(requestMock, nextMock).subscribe({
-    // En un caso
-    error: (error: Error) => expect(error.message).toContain('interno'),
-    // En el otro caso
-    error: (error: Error) => expect(error.message).toContain('Backend'),
-  });
+interceptor(requestMock, nextMock).subscribe({
+  // En un caso
+  error: (error: Error) => expect(error.message).toContain("interno"),
+  // En el otro caso
+  error: (error: Error) => expect(error.message).toContain("Backend"),
+});
 ```
 
 ## Estados basados en Signals
 
 ### Concepto de signals en Angular
 
-Angular 16 incorporó una nueva serie de elementos reactivos de carácter primitivo (**Reactive Primitivas**) nativos al framework, 
+Angular 16 incorporó una nueva serie de elementos reactivos de carácter primitivo (**Reactive Primitivas**) nativos al framework,
 por tanto independientes de la librería RxJs
 
 Estos elementos son
@@ -3481,10 +3418,10 @@ Estos elementos son
 creamos un componente ejemplo de signals (SignalsComponent) u lo añadimos a la HomePage después de importarlo
 
 ```shell
-  ng g c components/signals -t --project demo-rx 
+  ng g c components/signals -t --project demo-rx
 ```
 
-Vemos la similitud con el funcionamiento 'normal' de Angular. 
+Vemos la similitud con el funcionamiento 'normal' de Angular.
 
 - para acceder al valor siembre 'ejecutamos la signal'
 - para modificarlo, de forma siembre inmutable, usamos el método update
@@ -3500,12 +3437,12 @@ Vemos la similitud con el funcionamiento 'normal' de Angular.
 ```
 
 ```html
-  <ol>
-    @for (item of list(); track $index) {
-    <li></li>
-    }
-  </ol>
-  <button type="button" (click)="addItem()">Add item</button>
+<ol>
+  @for (item of list(); track $index) {
+  <li></li>
+  }
+</ol>
+<button type="button" (click)="addItem()">Add item</button>
 ```
 
 La principal diferencia no esta en el uso, sino en la forma en que se ejecuta,
