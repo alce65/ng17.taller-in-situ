@@ -47,7 +47,7 @@
     - [Test del componente Counter](#test-del-componente-counter)
     - [Test del componente Greeting](#test-del-componente-greeting)
   - [Challenge 2. Página TODO. Componente 'TODO List' unitario](#challenge-2-página-todo-componente-todo-list-unitario)
-    - [Solución del Challenge 2](#solución--del-challenge-2)
+    - [Solución del Challenge 2](#solución-del-challenge-2)
       - [La vista (template)](#la-vista-template)
       - [La lógica del componente](#la-lógica-del-componente)
       - [Los tests](#los-tests)
@@ -395,7 +395,7 @@ Podemos llamar así a los componentes invocados directamente en las rutas y usar
 podemos crearlos con el modo inline para el template (-t) y para los estilos (-s)
 
 ```shell
-ng g c pages/home -t -s --dry-run
+ng g c pages/home -t -s  --skip-selector --dry-run
 ```
 
 Modificamos nuestro componente para incluir propiedades y su interpolación en el template

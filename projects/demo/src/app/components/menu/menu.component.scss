@@ -1,0 +1,23 @@
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      display: block;
+      padding: 0.2rem 0.5rem;
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
+}
+
+.link-active {
+  font-weight: 500;
+  font-size: 1.1rem;
+  position: relative;
+  top: -2px;
+  transition: font-weight 2s;
+  border-bottom: 1px solid;
+}
