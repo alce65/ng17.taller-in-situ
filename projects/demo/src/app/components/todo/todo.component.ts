@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Task } from '../../entities/task';
-import { getTasks } from './tasks.mock';
+
 import { TaskAddComponent } from '../task-add/task-add.component';
 import { TaskCardComponent } from '../task-card/task-card.component';
+import { TasksApiRepoService } from '../../services/tasks.api.repo.service';
 
 @Component({
   selector: 'isdi-todo',
@@ -13,37 +14,41 @@ import { TaskCardComponent } from '../task-card/task-card.component';
 })
 export class TodoComponent implements OnInit {
   tasks: Task[] = [];
-  title = '';
-  addError = '';
-  editMode: { [key: string]: boolean } = {};
+  repo = inject(TasksApiRepoService);
 
   ngOnInit(): void {
     this.loadTasks();
   }
 
   loadTasks() {
-    getTasks().then((tasks) => {
+    this.repo.getAll().subscribe((tasks) => {
       this.tasks = tasks;
-      this.tasks.forEach((item) => (this.editMode[item.id] = false));
     });
   }
 
   addTask(taskData: Omit<Task, 'id' | 'isComplete'>) {
-    const task: Task = {
-      id: crypto.randomUUID(),
-      isComplete: false,
-      ...taskData,
-    };
-    this.tasks = [...this.tasks, task];
+    this.repo
+      .add(taskData)
+      .subscribe((tasks) => (this.tasks = [...this.tasks, ...tasks]));
   }
 
   updateTask(updatedItem: Task) {
-    this.tasks = this.tasks.map((item) =>
-      item.id === updatedItem.id ? updatedItem : item
-    );
+    this.repo
+      .update(updatedItem.id, updatedItem)
+      .subscribe(
+        ([task]) =>
+          (this.tasks = this.tasks.map((item) =>
+            item.id === task.id ? task : item
+          ))
+      );
   }
 
   deleteTask(deletedItemId: Task['id']) {
-    this.tasks = this.tasks.filter((item) => item.id !== deletedItemId);
+    this.repo
+      .delete(deletedItemId)
+      .subscribe(
+        () =>
+          (this.tasks = this.tasks.filter((item) => item.id !== deletedItemId))
+      );
   }
 }

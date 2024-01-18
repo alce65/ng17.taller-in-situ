@@ -7,5 +7,7 @@
   <li [title]="item.id" [id]="item.id">
     <isdi-task-card [task]="item" (updateEvent)="updateTask($event)" (deleteEvent)="deleteTask($event)" />
   </li>
+  } @empty {
+  <p>Loading</p>
   }
 </ul>

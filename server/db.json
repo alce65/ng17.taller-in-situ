@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Aprender Angular 17",
+      "isComplete": true
+    },
+    {
+      "id": "2",
+      "title": "Profundizar en RxJs",
+      "isComplete": false
+    },
+    {
+      "id": "3",
+      "title": "Aprender SQL",
+      "isComplete": false
+    },
+    {
+      "id": "4",
+      "title": "Profundizar en TypeScript",
+      "isComplete": false
+    },
+    {
+      "id": "ee6f",
+      "title": "New Task",
+      "isComplete": false
+    }
+  ]
+}
