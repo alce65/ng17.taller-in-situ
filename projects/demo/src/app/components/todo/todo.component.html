@@ -1,0 +1,43 @@
+<h2>Lista de tareas (todo)</h2>
+
+<div class="add">
+  <details #refDetails>
+    <summary>Añadir tarea</summary>
+    <div class="form">
+      <div class="contorl">
+        <label>
+          <!-- Don`t remove placeholder: used by CSS implementation -->
+          <input type="text" placeholder=" " [(ngModel)]="title" (focus)="addError = ''">
+          <span>Describe la tarea</span>
+        </label>
+      </div>
+      <div class="buttons">
+        <button type="button" (click)="handleAddTask()">Add</button>
+      </div>
+    </div>
+    @if (addError) {<p class="info-error">{{addError}}</p>}
+
+  </details>
+</div>
+
+<ul #refLista class="list">
+  @for (item of tasks; track item.id) {
+  <li [title]="item.id" [id]="item.id">
+    <div class="card">
+      <span><input type="checkbox" [checked]="item.isComplete" (change)="handleChangeTasks(item)"></span>
+      <input type="text" [readOnly]="!editMode[item.id]" [(ngModel)]="item.title" (blur)="handleSave(item)" />
+
+      <!-- <span [contentEditable]="editMode">{{item.title}}</span> -->
+
+      <span class="buttons">
+        @if (!editMode[item.id]) {
+        <button class="edit" type="button" (click)="handleEdit(item)">Edit</button>
+
+        }
+        <button class="delete" type="button" (click)="handleDeleteTask(item)">Delete</button>
+      </span>
+    </div>
+
+  </li>
+  }
+</ul>

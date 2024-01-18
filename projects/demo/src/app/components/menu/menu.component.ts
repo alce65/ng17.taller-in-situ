@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MenuOption } from '../../interfaces/menu.option';
 
 @Component({
   selector: 'isdi-menu',
@@ -9,5 +10,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-  algo = 'important-think';
+  options: MenuOption[] = [
+    { path: 'home', label: 'Home' },
+    { path: 'todo', label: 'Todo List' },
+    { path: 'about', label: 'Acerca de' },
+  ];
 }

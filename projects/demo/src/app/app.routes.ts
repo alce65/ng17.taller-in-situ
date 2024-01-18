@@ -7,6 +7,10 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () => import('./pages/home/home.component'),
   },
+  {
+    path: 'todo',
+    loadComponent: () => import('./pages/todo/todo.component'),
+  },
   // { path: 'about', component: AboutComponent },
   {
     path: 'about',
