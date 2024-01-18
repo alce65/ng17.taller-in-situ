@@ -1,11 +1,11 @@
 <h2>Lista de tareas (todo)</h2>
 
-<isdi-task-add (addTaskEvent)="addTask($event)" />
+<isdi-task-add />
 
 <ul #refLista class="list">
-  @for (item of tasks; track item.id) {
+  @for (item of store.getState().data | async; track item.id) {
   <li [title]="item.id" [id]="item.id">
-    <isdi-task-card [task]="item" (updateEvent)="updateTask($event)" (deleteEvent)="deleteTask($event)" />
+    <isdi-task-card [task]="item" />
   </li>
   } @empty {
   <p>Loading</p>

@@ -1,13 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, inject } from '@angular/core';
 import { Task } from '../../entities/task';
 import { FormsModule } from '@angular/forms';
+import { TasksStoreService } from '../../store/tasks.store.service';
 
 @Component({
   selector: 'isdi-task-card',
@@ -18,14 +12,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class TaskCardComponent {
   @Input() task!: Task;
-  @Output() updateEvent = new EventEmitter<Task>();
-  @Output() deleteEvent = new EventEmitter<Task['id']>();
+  // @Output() updateEvent = new EventEmitter<Task>();
+  // @Output() deleteEvent = new EventEmitter<Task['id']>();
   editMode = false;
   @ViewChild('refInput') refInput!: ElementRef;
 
+  store = inject(TasksStoreService);
+
   handleChangeTasks() {
     this.task.isComplete = !this.task.isComplete;
-    this.updateEvent.next(this.task);
+    // this.updateEvent.next(this.task);
+    this.store.updateTask(this.task);
   }
 
   handleEdit() {
@@ -35,10 +32,12 @@ export class TaskCardComponent {
 
   handleSave() {
     this.editMode = false;
-    this.updateEvent.next(this.task);
+    // this.updateEvent.next(this.task);
+    this.store.updateTask(this.task);
   }
 
   handleDeleteTask() {
-    this.deleteEvent.next(this.task.id);
+    // this.deleteEvent.next(this.task.id);
+    this.store.deleteTask(this.task.id);
   }
 }
