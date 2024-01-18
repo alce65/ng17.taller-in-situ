@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'isdi-counter',
@@ -10,8 +10,10 @@ import { Component } from '@angular/core';
 })
 export class CounterComponent {
   counter = 0;
+  @Output() clickEvent: EventEmitter<number> = new EventEmitter();
 
   handleCount(value: number) {
     this.counter = this.counter + value;
+    this.clickEvent.next(value);
   }
 }

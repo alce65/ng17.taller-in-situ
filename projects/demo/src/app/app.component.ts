@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { LayoutComponent } from 'core';
+import { MenuOption } from './interfaces/menu.option';
 
 @Component({
   selector: 'isdi-root',
@@ -11,4 +12,10 @@ import { LayoutComponent } from 'core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {}
+export class AppComponent {
+  menuOptions: MenuOption[] = [
+    { path: 'home', label: 'Home' },
+    { path: 'todo', label: 'Todo List' },
+    { path: 'about', label: 'Acerca de' },
+  ];
+}
