@@ -1,0 +1,28 @@
+label {
+  position: relative;
+
+  input {
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    width: 30%;
+    min-width: 15rem;
+  }
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+  }
+
+  input:not(:placeholder-shown) + span,
+  input:focus + span {
+    top: -1.2rem;
+    font-weight: 700;
+    transition: font-weight 1s;
+  }
+}
+
+.form-group {
+  margin-block-start: 1.2rem;
+  margin-block-end: 1rem;
+}

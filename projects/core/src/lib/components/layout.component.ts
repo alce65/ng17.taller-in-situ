@@ -8,11 +8,18 @@ import { FooterComponent } from './footer.component';
   imports: [HeaderComponent, FooterComponent],
   template: `
     <isdi-header>
-      <ng-content .menu></ng-content>
+      <ng-content select=".menu"></ng-content>
     </isdi-header>
-    <ng-content .main></ng-content>
+    <ng-content select=".main"></ng-content>
     <isdi-footer />
   `,
-  styles: ``,
+  styles: `
+    :host {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+    }
+  `,
 })
 export class LayoutComponent {}

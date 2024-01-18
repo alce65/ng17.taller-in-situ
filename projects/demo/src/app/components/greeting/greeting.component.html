@@ -1,8 +1,11 @@
 <p>greeting works!</p>
 <p>Hola {{user ? user : 'amigo' }}</p>
-<label>
-  Dime tu nombre
-  <input type="text" placeholder=" " [(ngModel)]="user">
-  <button (click)="user=''">Borrar</button>
+<div class="form-group">
+  <label>
+    <!-- Don`t remove placeholder: used by CSS implementation -->
+    <input type="text" placeholder=" " [(ngModel)]="user">
+    <span>Dime tu nombre</span>
+  </label>
+</div>
 
-</label>
+<button (click)="user=''">Borrar</button>
