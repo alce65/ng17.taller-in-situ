@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-block-end: 0.2rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+input:read-only {
+  border: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}

@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Task } from '../../entities/task';
 import { getTasks } from './tasks.mock';
+import { TaskAddComponent } from '../task-add/task-add.component';
+import { TaskCardComponent } from '../task-card/task-card.component';
 
 @Component({
   selector: 'isdi-todo',
   standalone: true,
-  imports: [FormsModule],
+  imports: [TaskAddComponent, TaskCardComponent],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss',
 })
@@ -15,49 +16,16 @@ export class TodoComponent implements OnInit {
   title = '';
   addError = '';
   editMode: { [key: string]: boolean } = {};
-  @ViewChild('refDetails') refDetails!: ElementRef;
-  @ViewChild('refLista') refLista!: ElementRef;
 
   ngOnInit(): void {
+    this.loadTasks();
+  }
+
+  loadTasks() {
     getTasks().then((tasks) => {
       this.tasks = tasks;
       this.tasks.forEach((item) => (this.editMode[item.id] = false));
     });
-  }
-
-  handleAddTask() {
-    if (!this.title) {
-      this.addError = 'Invalid data';
-      return;
-    }
-    const newTaskData: Omit<Task, 'id' | 'isComplete'> = {
-      title: this.title,
-    };
-    this.title = '';
-    this.addTask(newTaskData);
-    this.refDetails.nativeElement.removeAttribute('open');
-  }
-
-  handleChangeTasks(item: Task) {
-    item.isComplete = !item.isComplete;
-    this.updateTask(item);
-  }
-
-  handleEdit(item: Task) {
-    this.editMode[item.id] = true;
-    this.refLista.nativeElement.children[
-      item.id
-    ].children[0].children[1].focus();
-  }
-
-  handleSave(item: Task) {
-    this.editMode[item.id] = false;
-    this.updateTask(item);
-  }
-
-  handleDeleteTask(item: Task) {
-    this.deleteTask(item);
-    delete this.editMode[item.id];
   }
 
   addTask(taskData: Omit<Task, 'id' | 'isComplete'>) {
@@ -75,7 +43,7 @@ export class TodoComponent implements OnInit {
     );
   }
 
-  deleteTask(deletedItem: Task) {
-    this.tasks = this.tasks.filter((item) => item.id !== deletedItem.id);
+  deleteTask(deletedItemId: Task['id']) {
+    this.tasks = this.tasks.filter((item) => item.id !== deletedItemId);
   }
 }

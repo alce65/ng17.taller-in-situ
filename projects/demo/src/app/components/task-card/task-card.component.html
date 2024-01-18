@@ -1,0 +1,12 @@
+<span><input type="checkbox" [checked]="task.isComplete" (change)="handleChangeTasks()"></span>
+<input #refInput type="text" [readOnly]="!editMode" [(ngModel)]="task.title" (blur)="handleSave()" />
+
+<!-- <span [contentEditable]="editMode">{{task.title}}</span> -->
+
+<span class="buttons">
+  @if (!editMode) {
+  <button class="edit" type="button" (click)="handleEdit()">Edit</button>
+
+  }
+  <button class="delete" type="button" (click)="handleDeleteTask()">Delete</button>
+</span>

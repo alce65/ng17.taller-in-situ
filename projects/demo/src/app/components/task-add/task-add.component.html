@@ -1,0 +1,17 @@
+<details #refDetails>
+  <summary>Añadir tarea</summary>
+  <div class="form">
+    <div class="contorl">
+      <label>
+        <!-- Don`t remove placeholder: used by CSS implementation -->
+        <input type="text" placeholder=" " [(ngModel)]="title" (focus)="addError = ''">
+        <span>Describe la tarea</span>
+      </label>
+    </div>
+    <div class="buttons">
+      <button type="button" (click)="handleClickAdd()">Add</button>
+    </div>
+  </div>
+  @if (addError) {<p class="info-error">{{addError}}</p>}
+
+</details>
