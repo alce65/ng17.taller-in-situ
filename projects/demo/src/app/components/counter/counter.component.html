@@ -1,9 +1,9 @@
 <h3>Counter</h3>
-<button (click)="handleCount(-1)" [disabled]="counter === -10"> ➖</button>
-<span [ngClass]="{negative: counter< 0}">
-  {{counter}}
+<button (click)="handleCount(-1)" [disabled]="counter === -10">➖</button>
+<span [ngClass]="{ negative: counter < 0 }">
+  {{ counter }}
 </span>
-<button (click)="handleCount(+1)" [disabled]="counter === 10"> ➕</button>
+<button (click)="handleCount(+1)" [disabled]="counter === 10">➕</button>
 
 @if (counter === 10) {
 <p>Has llegado al límite superior</p>

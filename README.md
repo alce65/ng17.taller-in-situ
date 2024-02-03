@@ -10,7 +10,7 @@
       - [El proceso de arranque (bootstrap) de la aplicación](#el-proceso-de-arranque-bootstrap-de-la-aplicación)
     - [Revisión de las operaciones básicas con el CLI (1): scaffolding y server](#revisión-de-las-operaciones-básicas-con-el-cli-1-scaffolding-y-server)
       - [Development server](#development-server)
-      - [Code scaffolding](#code-scaffolding)
+      - [Code scaffolding. El componente Sample](#code-scaffolding-el-componente-sample)
     - [COMPONENTE (Review)](#componente-review)
     - [Revisión de las operaciones básicas con el CLI (2): build y test](#revisión-de-las-operaciones-básicas-con-el-cli-2-build-y-test)
       - [Build](#build)
@@ -25,7 +25,7 @@
     - [Menu: navegación sin recarga para una SPA](#menu-navegación-sin-recarga-para-una-spa)
   - [Componentes: estado y binding. Eventos. Templates y control flow. Estilos](#componentes-estado-y-binding-eventos-templates-y-control-flow-estilos)
     - [Opciones del menu como propiedad: uso de @for](#opciones-del-menu-como-propiedad-uso-de-for)
-    - [Componente contador: estado y eventos](#componente-contador-estado-y-eventos)
+    - [Componente Contador (Counter): estado y eventos](#componente-contador-counter-estado-y-eventos)
     - [Uso condicional de clases CSS](#uso-condicional-de-clases-css)
     - [Limites en el contador: renderizado condicional](#limites-en-el-contador-renderizado-condicional)
     - [Componente saludo: two-way data binding with ngModel](#componente-saludo-two-way-data-binding-with-ngmodel)
@@ -51,15 +51,15 @@
       - [La vista (template)](#la-vista-template)
       - [La lógica del componente](#la-lógica-del-componente)
       - [Los tests](#los-tests)
-  - [Arquitectura básica](#arquitectura-básica)
-    - [Comunicación entre componentes](#comunicación-entre-componentes)
+  - [Comunicación entre componentes](#comunicación-entre-componentes)
     - [Inputs: paso de parámetros a los hijos](#inputs-paso-de-parámetros-a-los-hijos)
       - [Test del componente menu](#test-del-componente-menu-1)
     - [Outputs: eventos hacia el padre](#outputs-eventos-hacia-el-padre)
       - [Test del componente clicker](#test-del-componente-clicker)
       - [Test del componente click. SpyOn en Jasmine](#test-del-componente-click-spyon-en-jasmine)
       - [Challenge. Comenzando un Design system](#challenge-comenzando-un-design-system)
-  - [Modelo controlador/presentadores:](#modelo-controladorpresentadores)
+  - [**Arquitectura básica** (1)](#arquitectura-básica-1)
+  - [Modelo controlador (contenedor) / presentadores:](#modelo-controlador-contenedor--presentadores)
   - [Challenge. Refactoring del TODO list: List / Card + Add](#challenge-refactoring-del-todo-list-list--card--add)
   - [Challenge (alternativa). Lista de notas: List / Cards + Add](#challenge-alternativa-lista-de-notas-list--cards--add)
     - [Solución: Lista de notas](#solución-lista-de-notas)
@@ -82,7 +82,7 @@
       - [Test del repo courses.local.repo](#test-del-repo-courseslocalrepo)
     - [Uso del repo courses.local.repo en el componente](#uso-del-repo-courseslocalrepo-en-el-componente)
   - [NEXT Schedule: aplicación demo](#next-schedule-aplicación-demo)
-  - [Reactividad basada en RxJs](#reactividad-basada-en-rxjs)
+  - [Reactividad basada en RxJs. **Arquitectura básica** (2)](#reactividad-basada-en-rxjs-arquitectura-básica-2)
     - [OBSERVABLES](#observables)
     - [Nueva aplicación demo.rx](#nueva-aplicación-demorx)
     - [Challenge: Paso de elementos a la librería](#challenge-paso-de-elementos-a-la-librería)
@@ -230,7 +230,7 @@ The application will automatically reload if you change any of the source files.
 
 Estando activo ng serve comprobamos como se refleja un cambio e.g. el valor del titulo almacenado en app.component
 
-#### Code scaffolding
+#### Code scaffolding. El componente Sample
 
 Run `ng generate component component-name` to generate a new component.
 You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
@@ -395,7 +395,8 @@ Podemos llamar así a los componentes invocados directamente en las rutas y usar
 podemos crearlos con el modo inline para el template (-t) y para los estilos (-s)
 
 ```shell
-ng g c pages/home -t -s  --skip-selector --dry-run
+ng g c pages/home -t -s  --skip-selector
+ng g c pages/about -t -s  --skip-selector
 ```
 
 Modificamos nuestro componente para incluir propiedades y su interpolación en el template
@@ -469,7 +470,7 @@ ng g c components/menu
 
 Lo incorporamos en app.component, antes del router outlet
 
-Para poder usar directicas de routing es necesario que el componente importe de Angular
+Para poder usar directivas de routing es necesario que el componente importe de Angular
 el módulo responsable de esta funcionalidad, RoutingModule
 
 ```ts
@@ -560,7 +561,7 @@ Al mismo tiempo vemos las dos formas de incorporar expresiones de ES en los temp
 - como atributos de los componentes: []
 - como interpolaciones en el contenido: {{}}
 
-### Componente contador: estado y eventos
+### Componente Contador (Counter): estado y eventos
 
 Creamos un componente contador y lo añadimos en la página home
 
@@ -676,7 +677,7 @@ Así es como usaremos siempre el binding bidireccional
 
 ### Los estilos y los componentes
 
-El fichero de estilos src/styles define los estilos generales.
+El fichero de estilos src/styles define los **estilos generales**.
 
 En el podemos colocar las variables que teníamos en el componente sample o las propiedades de main
 
@@ -1285,7 +1286,7 @@ Repasa el uso de
 - Built-in control flow (antes directivas estructurales): @for / @if
 - directivas de atributo y CSS: ngClass (y ngStyle)
 - two-way data binding
-- manjadores de eventos: (click) ...
+- manejadores de eventos: (click) ...
 
 ### Solución del Challenge 2
 
@@ -1479,14 +1480,7 @@ beforeEach(async () => {
 
 El resto de los test escribe en los inputs, hace check o click y emitir los eventos correspondientes (input, change, blur) a los que hay asociados manejadores, de forma muy similar a lo que ya hemos visto
 
-## Arquitectura básica
-
-- Comunicación entre componentes
-- Modelo controlador/presentadores: Refactoring del TODO list: List / Cards
-- Abstracción de la lógica en servicios. Repositorio
-- Persistencia en el repositorio: servicio storage (localStore)
-
-### Comunicación entre componentes
+## Comunicación entre componentes
 
 En Angular es bidireccional pero asimétrica
 
@@ -1646,9 +1640,15 @@ Sabiendo como funciona la comunicación entre los componentes, podemos avanzar e
 Ya hemos usado varias veces un código similar para crear inputs. Lo eficaz sería abstraer ese código a un componente independiente y usarlo cuando sea necesario,
 Intenta conseguirlo
 
-Y la misma pauta podemos aplicarla a botones, modales y demas elemntos hasta ir construyendo nuestro propia sistema de diseño.
+Y la misma pauta podemos aplicarla a botones, modales y demás elementos hasta ir construyendo nuestro propia sistema de diseño.
 
-## Modelo controlador/presentadores:
+## **Arquitectura básica** (1)
+
+- Modelo controlador/presentadores: Refactoring del TODO list: List / Cards
+- Abstracción de la lógica en servicios. Repositorio
+- Persistencia en el repositorio: servicio storage (localStore)
+
+## Modelo controlador (contenedor) / presentadores:
 
 Cualquier situación que incluye una lista con una serie de items es buena practica componentizarla,
 separando la lista y el item como componentes que se pueden comunicar tal como hemos visto.
@@ -2396,7 +2396,7 @@ expect(result).toEqual([]);
 - Componentización del ejemplo inicial de Angular
 - Sistema de diseño: componentes reutilizables. Input. Modal
 
-## Reactividad basada en RxJs
+## Reactividad basada en RxJs. **Arquitectura básica** (2)
 
 [RxJs](https://rxjs.dev/) es la librería reactiva más importante en JS, proporcionado un tipo de dato conocido como Observables, junto varias extensiones suyas y multitud de operadores para manejarlos.
 
