@@ -1,5 +1,8 @@
 # Ng17 Workshop
 
+Código _"in situ"_ del Taller de Angular 17 en ISDI Coders (Enero 2024)
+Repositorio público en [Github](https://github.com/alce65/ng17.taller-in-situ)
+
 - [Ng17 Workshop](#ng17-workshop)
   - [Creación del proyecto](#creación-del-proyecto)
   - [Incorporación de ESLint](#incorporación-de-eslint)
